@@ -1,0 +1,161 @@
+-- TRANSACTIONS
+START TRANSACTION;
+UPDATE products SET price = price + 10 WHERE name = 'Existing Product';
+COMMIT;
+
+
+START TRANSACTION;
+INSERT INTO employee VALUES (1,NULL,'Doe','','john.doe@gamil.com','1234567890','1990-01-01','12345678901234','Manager',1,50000,NULL,'2023-01-01','M','Branch A');
+COMMIT;
+
+START TRANSACTION;
+UPDATE products SET price = price - 5 WHERE name = 'Existing Product';
+COMMIT;
+
+
+START TRANSACTION;
+-- Insert a new product into the products table
+INSERT INTO products (product_id, product_name, quantity, price) 
+VALUES ('4', 'New Product', 100, 29.99);
+COMMIT;
+
+START TRANSACTION;
+-- Update the price of a product in the products table
+UPDATE products SET price = 19.99 WHERE product_id = '2';
+COMMIT;
+
+START TRANSACTION;
+-- Insert a new customer into the customers table
+INSERT INTO customers (customer_id, customer_name, email, balance) 
+VALUES ('234', 'John Doe', 'john@example.com', 500.00);
+COMMIT;
+
+START TRANSACTION;
+-- Deduct the ordered quantity from the product stock
+UPDATE products SET quantity = quantity - 5 WHERE product_id = '1';
+-- Deduct the order amount from the customer's balance
+UPDATE customers SET balance = balance - (5 * price) WHERE customer_id = '123';
+-- Insert the order details into the orders table
+INSERT INTO orders (customer_id, product_id, quantity) VALUES ('123', '1', 5);
+COMMIT;
+
+
+START TRANSACTION;
+-- Update the quantity of a product in the products table
+UPDATE products SET quantity = quantity - 5 WHERE product_id = '1';
+-- Update the price of the same product in the products table
+UPDATE products SET price = 19.99 WHERE product_id = '1';
+COMMIT;
+
+
+START TRANSACTION;
+-- Add a product to the cart (increase quantity)
+UPDATE products SET quantity = quantity + 1 WHERE product_id = '3';
+-- Simulate checking out by reducing the product quantity and updating order
+UPDATE products SET quantity = quantity - 1 WHERE product_id = '3';
+INSERT INTO orders (customer_id, product_id, quantity) VALUES ('234', '3', 1);
+COMMIT;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+BEGIN TRANSACTION;
+
+-- Read the quantity (x1) of the product that the customer checks out
+SELECT quantity INTO @x1 FROM Product WHERE product_id = '123';
+
+-- Read the overall available quantity (X) of that product
+SELECT quantity INTO @X FROM Product WHERE product_id = '123';
+
+-- Decrease the overall available quantity by x1
+SET @X = @X - @x1;
+
+-- Update the quantity in the Product table
+UPDATE Product SET quantity = @X WHERE product_id = '123';
+
+COMMIT;
+
+START TRANSACTION;
+
+-- Read the quantity (x2) of the product that the customer adds to his cart
+SELECT quantity INTO @x2 FROM products WHERE product_id = '123';
+
+-- Read the overall available quantity (X) of that product
+SELECT quantity INTO @X FROM products WHERE product_id = '123';
+
+-- Decrease the overall available quantity by x2
+SET @X = @X - @x2;
+
+-- Check if the updated quantity is valid (e.g., not negative)
+-- (Assuming this check involves some additional logic)
+
+-- Update the quantity in the products table
+UPDATE products SET quantity = @X WHERE product_id = '123';
+
+COMMIT;
+
+START TRANSACTION;
+
+-- Read the total amount of the cart (TotAmt) and the coupon discount (Dis)
+SELECT total_amount, discount INTO @TotAmt, @Dis FROM cart WHERE customer_id = 'xyz';
+
+-- Calculate the new total amount after applying the discount
+SET @TotAmt_new = @TotAmt - @Dis;
+
+-- Update the total amount in the cart table
+UPDATE cart SET total_amount = @TotAmt_new WHERE customer_id = 'xyz';
+
+COMMIT;
+
+Transaction-1 (T-1):
+
+ START TRANSACTION;
+
+-- Read the quantity (X) of Product 1 from the stock
+SELECT quantity INTO @X FROM products WHERE product_id = '1';
+
+-- Increase the quantity of Product 1 by x1
+SET @X = @X + x1;
+
+-- Update the quantity in the products table
+UPDATE products SET quantity = @X WHERE product_id = '1';
+
+COMMIT;
+Transaction-2 (T-2):
+
+ START TRANSACTION;
+
+-- Read the quantity (X) of Product 1 from the stock
+SELECT quantity INTO @X FROM products WHERE product_id = '1';
+
+-- Decrease the quantity of Product 1 by x2
+SET @X = @X - x2;
+
+-- Update the quantity in the products table
+UPDATE products SET quantity = @X WHERE product_id = '1';
+
+-- Read the balance (Bal) of the customer and update the new balance (BalNew)
+SELECT balance INTO @Bal FROM customers WHERE customer_id = '123';
+SET @BalNew = @Bal - (x2 * product_price); -- Assuming product_price is available
+
+-- Update the balance in the customers table
+UPDATE customers SET balance = @BalNew WHERE customer_id = '123';
+
+-- Write the order information (Ord) to the orders table
+INSERT INTO orders (customer_id, product_id, quantity) VALUES ('123', '1', x2);
+
+COMMIT;
