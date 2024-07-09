@@ -1,0 +1,244 @@
+<!--<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Display</title>
+    <link rel="stylesheet" 
+    type="text/css" href="/Home.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+
+
+
+        img {
+            max-width: 100px;
+            max-height: 100px;
+        }
+    </style>
+</head>
+<body>
+
+
+     <nav>
+        <ul style="margin-bottom: 10px;">
+            <li><a href="http://localhost:8080/Home">Home</a></li>
+
+            <li><a href="http://localhost:8080/Products">Products</a></li>
+
+            <li><a href="http://localhost:8080/Cart">Cart</a></li>
+
+            <li><a href="">Contact Us</a></li>
+            
+                
+            
+        </ul>
+        <div class="SearchNav">
+            <input type="text" class="SearchInput" placeholder="Search...">
+            <button class="SearchButton">Search</button>
+          </div>
+    </nav>
+    <main>
+    <div class="container">
+        <h1>Product Display</h1>
+        <div class="Container">
+            
+            <%Products.forEach(product=>{%>
+                <div class="ItemBody",id="<%=product.product_id%>">
+                    <div id="product1">
+                        <h3><%= product.name %></h3>
+                    </div>
+                    <div>
+                        <img src="<%= product.image %>" alt="<%= product.name %>">
+                        <p>Price: $<%= product.price %></p>
+                        <button onclick="addItemToCart(<%= JSON.stringify(product) %>)">Add to Cart</button>
+
+                    </div>
+                </div>
+
+            <%  })%>
+             <div class="ItemBody">
+                <div id="product1">
+                    <h3>Product 1</h3>
+                </div>
+                <div>
+                    <img src="product1.jpg" alt="Product 1">
+                    <p>Price: $100</p>
+                    <button>Add to Cart</button>
+                </div>
+            </div> 
+        </div> 
+    </div>
+
+</main>
+    <footer>
+        <div>
+            <% if (id > 1) { %>
+                
+            <a href="http://localhost:8080/Product/<%= id-1 %>" style="display: inline-block;">Back</a>
+            <% } %>
+
+            <% let y = id + 1; %>
+            <% while (y < id + 5) { %>
+                <a href="http://localhost:8080/Product/<%= y %>" style="display: inline-block;"><%= y %></a>
+                <% y++; %>
+            <% } %>  
+        </div>
+        
+        
+        
+        <p>Copyright © 2024 Online Shopping App</p>
+    </footer> 
+    <script src="/Client.js"></script>
+</body>
+</html>-->
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Tech2etc Ecommerce Tutorial</title>
+        <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
+
+        <link rel="stylesheet" href="/css/style.css">
+    </head>
+
+    <body>
+
+        <section id="header">
+            <a href="#"><img src="/img/logo.png" class="logo" alt=""></a>
+            <div>
+                <ul id="navbar">
+                    <li><a href="/Home">Home</a></li>
+                    <li><a class="active" href="/Product/0">Shop</a></li>
+                    <li><a href="/Blog">Blog</a></li>
+                    <li><a href="/About">About</a></li>
+                    <li><a href="/Contact">Contact</a></li>
+
+                    <li><a href="/cart"><i class="far fa-shopping-bag"></i></a></li>
+
+                </ul>
+            </div>
+        </section>
+
+        <section id="page-header">
+            <h2>#stayhome</h2>
+            <p>Save more with coupons & up to 70% off!</p>
+        </section>
+
+        <section id="product1" class="section-p1">
+            <div class="pro-container">
+                <div class="pro-container">
+                    <% Products.forEach(product => { %>
+                        <div class="pro">
+                          <img src="/<%= product.src %>" alt="<%= product.name %>">
+                          <div class="des">
+                            <span><%= product.brand %></span>
+                            <h5><%= product.name %></h5>
+                            <div class="star">
+                              <i class="fas fa-star"></i>
+                              <i class="fas fa-star"></i>
+                              <i class="fas fa-star"></i>
+                              <i class="fas fa-star"></i>
+                              <i class="fas fa-star"></i>
+                            </div>
+                            <h4>$<%= product.price %></h4>
+                          </div>
+                          <a href="/ProductDes/<%=product.product_id%>"><i class="fal fa-shopping-cart cart"></i></a>
+                        </div>
+                      <% }) %>
+        
+                </div>
+                
+            </div>
+        </section>
+
+        <section id="pagination" class="section-p1">
+            <% if (id > 1 || id==-1) { %>
+                <%if(id==-1){%>
+                    <a href="/Product/0"><i class="fal fa-long-arrow-alt-left"></i></a>
+                <%}%>
+                <% if (id > 1) { %>
+                <a href="/Product/<%= id-1 %>"><i class="fal fa-long-arrow-alt-left"></i></a>
+                <% } %>
+              <% } %>
+            <% if (id !== -1) { %>
+              
+              <% for (let i = id; i <= id + 1; i++) { %>
+                <a href="/Product/<%= i %>"><%= i %></a>
+              <% } %>
+              <a href="/Product/<%= id + 2 %>"><i class="fal fa-long-arrow-alt-right"></i></a>
+            <% } %>
+          </section>
+          
+
+        <section id="newsletter" class="section-p1 section-m1">
+            <div class="newstext">
+                <h4>Sign-up For Newsletters</h4>
+                <p>Get E-mail updates about our latest shop and <span>special offers.</span></p>
+            </div>
+            <div class="form">
+                <input type="email" placeholder="Your E-mail Address">
+                <button class="normal">Sign-up</button>
+            </div>
+        </section>
+
+        <footer class="section-p1">
+            <div class="col">
+                <img class="logo" src="/img/logo.png" alt="">
+                <h4>Contact</h4>
+                <p><strong>Address: </strong>562 wellington Road, Street 32, San Francisco</p>
+                <p><strong>Phone: </strong>+01 2222 365/(+91)01 2345 6789</p>
+                <p><strong>Hours: </strong>10:00 - 18:00, Mon - Sat</p>
+            <div class="follow">
+                <h4>Follow us</h4>
+                <div class="icon">
+                    <i class="fab fa-facebook-f"></i>
+                    <i class="fab fa-twitter"></i>
+                    <i class="fab fa-instagram"></i>
+                    <i class="fab fa-pinterest"></i>
+                    <i class="fab fa-youtube"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <h4>About</h4>
+            <a href="#">About Us</a>
+            <a href="#">Delivery Information</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms & Conditions</a>
+            <a href="#">Contact us</a>
+        </div>
+        <div class="col">
+            <h4>My Account</h4>
+            <a href="#">Sign-in</a>
+            <a href="#">View Cart</a>
+            <a href="#">My Wishlist</a>
+            <a href="#">Track My Order</a>
+            <a href="#">Help</a>
+        </div>
+        <div class="col install">
+            <h4>Install App</h4>
+            <p>From App Store or Google Play</p>
+            <div class="row">
+                <img src="/img/pay/app.jpg" alt="">
+                <img src="/img/pay/play.jpg" alt="">
+            </div>
+            <p>Secured Payment Gateways</p>
+            <img src="/img/pay/pay.png" alt="">
+        </div>
+        </footer>
+
+        <script src="/Client.js"></script>
+    </body>
+
+</html>

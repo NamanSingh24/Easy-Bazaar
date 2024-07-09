@@ -1,0 +1,143 @@
+/* Center-align container */
+.container {
+    text-align: center;
+    margin-top: 50px; /* Adjust margin */
+    color: #fff; /* Text color */
+  }
+  
+  /* Background color */
+  body {
+    background-color: #111;
+  }
+  
+  /* Button styles */
+  .space-btn {
+    position: relative;
+    font-size: 1em;
+    text-transform: uppercase;
+    letter-spacing: 0.125em;
+    line-height: 1;
+    color: #FFB902; /* Changed color to match button */
+    margin: 10px; /* Adjust spacing between buttons */
+    padding: 1em 2em; /* Adjust button padding */
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: color 0.3s ease-in-out;
+  }
+  
+  .space-btn:hover {
+    color: lighten(#FFB902, 20%);
+  }
+  
+  .space-btn:focus {
+    color: lighten(#FFB902, 10%);
+    outline: none;
+  }
+  
+  .space-btn:active {
+    color: #FFB902;
+  }
+  
+  .space-btn:before,
+  .space-btn:after {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 1px;
+  }
+  
+  .space-btn:before {
+    top: 0;
+    left: 0;
+    box-shadow: inset 1px 1px 0 0 #FFB902;
+  }
+  
+  .space-btn:after {
+    right: 0;
+    bottom: 0;
+    box-shadow: inset -1px -1px 0 0 #FFB902;
+  }
+  
+  .space-btn:hover:before {
+    animation: hoverShadowBefore 1s forwards;
+  }
+  
+  .space-btn:hover:after {
+    animation: hoverShadowAfter 1s forwards;
+  }
+  
+  @keyframes hoverShadowBefore {
+    0% {
+      width: 100%;
+      height: 1px;
+      top: 0;
+      left: 0;
+    }
+    33% {
+      width: 1px;
+      height: 100%;
+      top: 0;
+      left: 0;
+    }
+    66% {
+      width: 1px;
+      height: 1px;
+      top: calc(100% - 1px);
+      left: 0;
+    }
+    100% {
+      width: 100%;
+      height: 1px;
+      top: calc(100% - 1px);
+      left: 0;
+    }
+  }
+  
+  @keyframes hoverShadowAfter {
+    0% {
+      width: 100%;
+      height: 1px;
+    }
+    33% {
+      width: 1px;
+      height: 100%;
+      bottom: 0;
+      right: 0;
+    }
+    66% {
+      width: 1px;
+      height: 1px;
+      bottom: calc(100% - 1px);
+      right: 0;
+    }
+    100% {
+      width: 100%;
+      height: 1px;
+      bottom: calc(100% - 1px);
+      right: 0;
+    }
+  }
+  
+  /* Form styles */
+  form {
+    margin-top: 20px; /* Adjust form margin */
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  input {
+    padding: 8px;
+    margin-bottom: 10px;
+    width: 100%;
+  }
+  
+  /* Hide form initially */
+  .hidden {
+    display: none;
+  }
+  

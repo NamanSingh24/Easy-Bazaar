@@ -1,0 +1,77 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!---#########################REMIXICONS##################--->
+<link
+    href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css"
+    rel="stylesheet"
+>
+
+<link rel ="stylesheet" href="login.css"
+  <title>Easy Bazar login</title>
+
+
+</head>
+<body>
+  <div class= "login">
+    <img src="/login.jpg" alt="kitchen bg image" class = "login__img">
+    <form action="/login" method="post" class="login__form">
+      <h1 class="login__title">Login</h1>
+      <div class="login__content">
+        <div class="login__box">
+          <i class="ri-user-line login__icon"></i>
+          <div class="login__box-input">
+            <input type="text" required  class="login__input" placeholder="" name="username" >
+            <label for="" class="login__label">
+              Username
+            </label>
+          </div>
+        </div>
+        <!-- ######Password######## -->
+        
+        <div class="login__box">
+          <i class="ri-lock-2-line login__icon"></i>
+          <div class="login__box-input">
+            <i class="ri-eye-close-fill login__eye" id="login-eye"></i>
+            <input type="password" required  class="login__input" 
+            name="password" 
+            placeholder="">
+            <label for="" class="login__label">
+              Password
+            </label>
+          </div>
+        </div>
+        <!-- ######Checkbox######## -->
+        <div class="login__check">
+          <div class="login__check-group">
+            <input type="checkbox" class="login__check-input">
+            <label for="" class="login__check-label">
+              Remmber me
+            </label>
+          </div>
+          <a href="#" class="login__forget">Forgot password?</a>
+
+        </div>
+        <sub class="login__register"  >
+          Guest Login: Username: Alice Johnson, Password: password123
+        </sub>
+        <sub class="login__register" style = "color: brown"><%=message%></sub>
+      </div>
+      <!--End of Login Content-->
+        <!-- ######Button######## -->
+      <button class="login__button">
+        Login
+      </button>
+      <p class="login__register">
+        Don't have an account? <a href="#" class="login__link">Sign up</a>
+      </p>
+      
+    </form>
+  </div>  
+</body>
+</html>
+

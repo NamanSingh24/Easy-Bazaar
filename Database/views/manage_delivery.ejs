@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Manage Delivery</title>
+<link rel="stylesheet" href="main.css"> 
+<style>
+ 
+  #messageDiv {
+    transition: opacity 0.5s ease-out; 
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h1>Manage Delivery</h1>
+
+  <!-- Form for assigning delivery agent to an order -->
+  <form id="assignAgentForm" action="/assign_delivery_agent" method="post">
+    <h2>Assign Delivery Agent to Order</h2>
+    <label for="orderId">Order ID:</label>
+    <input type="text" id="orderId" name="orderId" required><br>
+    <label for="agentId">Delivery Agent ID:</label>
+    <input type="text" id="agentId" name="agentId" required><br>
+    <input type="submit" value="Assign Agent">
+  </form>
+
+  <!-- Placeholder for monitoring delivery agent performance -->
+  <div id="performanceContainer">
+    <h2>Monitor Delivery Agent Performance</h2>
+    <!-- Add content for monitoring performance here -->
+    <p>Performance metrics and monitoring tools can be displayed here.</p>
+  </div>
+
+  <div id="messageDiv">
+    <%if(message.length>0){%>
+      <h2><%=message%></h2>
+    <%}%>
+  </div>
+</div>
+
+<script>
+var messageDiv = document.getElementById('messageDiv');
+
+// Set timeout to hide the div after 1 second
+setTimeout(function() {
+  messageDiv.style.opacity = '0'; // Set opacity to 0 for fade-out effect
+  setTimeout(function() {
+    messageDiv.style.display = 'none'; // Hide the div after the transition completes
+  }, 500); // Wait for the transition duration before hiding (0.5s in this case)
+}, 1000); 
+</script>
+
+</body>
+</html>

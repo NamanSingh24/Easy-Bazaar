@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>View Customer Details</title>
+<link rel="stylesheet" href="main.css">
+<style>
+  #customerTable th,
+#customerTable td {
+  color: white;
+}
+#messageDiv {
+  
+   color: seashell;
+    transition: opacity 0.5s ease-out; /* Adjust the duration and timing function as needed */
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h1>View Customer Details</h1>
+
+  <!-- Button to view customer details -->
+  <button class="space-btn" onclick="toggleForm('viewCustomerDetailsForm')">View Customer Details</button>
+
+  <!-- Form for viewing customer details -->
+  <form id="viewCustomerDetailsForm" class="hidden" action="/view_customer_details" method="post">
+    <h2>View Customer Details</h2>
+    <label for="customerId">Customer ID:</label>
+    <input type="text" id="customerId" name="customerId" required>
+    <input type="submit" value="View Details">
+  </form>
+<!-- Display The Details -->
+<%if(customer!='' && customer!="Customer does not exist"){%>
+<div id="customerDetails" >
+  <h2>Customer Details</h2>
+  <table>
+    <tr>
+      <th>Customer ID</th>
+      <th>Name</th>
+      <th>Address</th>
+      <th>Age</th>
+      
+      <th>Phone Number</th>
+      <th>Date of Birth</th>
+    </tr>
+    <!-- Details will be added here dynamically -->
+    <tr>
+      <td><%=customer.customer_id%></td>
+      <td><%=customer.name%></td>
+      <td><%=customer.address%></td>
+      <td><%=customer.age%></td>
+     
+      <td><%=customer.phone_number%></td>
+      <td><%=customer.DOB%></td>
+    </tr>
+
+  </table>
+</div>
+  
+<%}%>
+
+<div id="messageDiv">
+  <h2>
+    <%if(customer=='Customer does not exist'){%>
+      Customer does not exist
+    <%}%>
+  </h2>
+</div>
+</div>
+
+<script>
+  // Function to toggle form visibility
+  function toggleForm(formId) {
+    var form = document.getElementById(formId);
+    form.classList.toggle('hidden');
+  }
+
+  var messageDiv = document.getElementById('messageDiv');
+
+  // Set timeout to hide the div after 1 second
+  setTimeout(function() {
+    messageDiv.style.opacity = '0'; // Set opacity to 0 for fade-out effect
+    setTimeout(function() {
+      messageDiv.style.display = 'none'; // Hide the div after the transition completes
+    }, 500); // Wait for the transition duration before hiding (0.5s in this case)
+  }, 1000); // 1000 milliseconds = 1 second
+</script>
+
+</body>
+</html>

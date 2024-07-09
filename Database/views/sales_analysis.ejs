@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>View Reviews and Analysis</title>
+<link rel="stylesheet" href="main.css"> 
+</head>
+<body>
+
+<div class="container">
+  <h1>View Reviews and Analysis</h1>
+
+  <!-- Form for entering customer ID -->
+  <form id="customerIdForm" action="check_customer_id.php" method="post">
+    <label for="customerId">Enter Customer ID:</label>
+    <input type="text" id="customerId" name="customerId" required>
+    <input type="submit" value="Submit">
+  </form>
+
+  <!-- Placeholder for displaying buttons and analysis -->
+  <div id="contentContainer" style="display: none;">
+    <!-- Buttons for viewing reviews -->
+    <div id="buttonsContainer">
+      <!-- Button to view delivery agent reviews -->
+      <button class="space-btn" onclick="toggleForm('agentReviewsForm')">View Delivery Agent Reviews</button>
+
+      <!-- Button to view product reviews -->
+      <button class="space-btn" onclick="toggleForm('productReviewsForm')">View Product Reviews</button>
+
+      <!-- Button to view customer reviews -->
+      <button class="space-btn" onclick="toggleForm('customerReviewsForm')">View Customer Reviews</button>
+    </div>
+
+    <!-- Placeholder for displaying analysis -->
+    <div id="analysisContainer" style="display: none;">
+      <h2>Sales Analysis</h2>
+      <!-- Add your sales analysis content here -->
+      <p>Evaluate the overall sales performance, including total revenue and the growth or decline in sales over a specific period. Identify top-selling and underperforming products.</p>
+
+      <h2>Manage Orders</h2>
+      <!-- Add your manage orders content here -->
+      <p>Manage customer orders.</p>
+    </div>
+
+    <!-- Form for viewing delivery agent reviews -->
+    <form id="agentReviewsForm" class="hidden" action="view_agent_reviews.php" method="post">
+      <h2>View Delivery Agent Reviews</h2>
+      <label for="agentId">Agent ID:</label>
+      <input type="text" id="agentId" name="agentId" required>
+      <input type="submit" value="View Reviews">
+    </form>
+
+    <hr>
+
+    <!-- Form for viewing product reviews -->
+    <form id="productReviewsForm" class="hidden" action="view_product_reviews.php" method="post">
+      <h2>View Product Reviews</h2>
+      <label for="productId">Product ID:</label>
+      <input type="text" id="productId" name="productId" required>
+      <input type="submit" value="View Reviews">
+    </form>
+
+    <hr>
+
+    <!-- Form for viewing customer reviews -->
+    <form id="customerReviewsForm" class="hidden" action="view_customer_reviews.php" method="post">
+      <h2>View Customer Reviews</h2>
+      <label for="customerId">Customer ID:</label>
+      <input type="text" id="customerId" name="customerId" required>
+      <input type="submit" value="View Reviews">
+    </form>
+  </div>
+</div>
+
+<script>
+  // Function to toggle form visibility
+  function toggleForm(formId) {
+    var form = document.getElementById(formId);
+    form.classList.toggle('hidden');
+  }
+
+  // Function to check if customer ID exists and show relevant content
+  document.getElementById("customerIdForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+    var customerId = document.getElementById("customerId").value;
+
+    // Perform AJAX request to check if customer ID exists in the database
+    // Replace the following with your actual AJAX code
+
+    // For demonstration, assume customer ID exists
+    var customerExists = true;
+
+    if (customerExists) {
+      document.getElementById("contentContainer").style.display = "block";
+      document.getElementById("analysisContainer").style.display = "block";
+    } else {
+      alert("Customer ID does not exist!");
+    }
+  });
+</script>
+
+</body>
+</html>

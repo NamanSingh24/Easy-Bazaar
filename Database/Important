@@ -1,0 +1,40 @@
+___________Environment Variables____________________________
+Example :- host: process.env.Host 
+Environment variables like this exist on the compute so they allow us to modify the values in an application depending on where that application is running and without changing the code.
+So if we are running the application on a local machine, we can set the environment variable to localhost, but if we are running the application on a server, we can set the environment variable to the server's IP address.
+
+Also prevents from hardcoding the user, passwords and other formalities.
+    host: process.env.MYSQL_HOST || 'localhost',
+    user: process.env.MYSQL_USER,
+    password: process.env.MYSQL_PASSWORD,
+    database: process.env.MYSQL_DATABASE,
+
+    but now  we have to setup these environment variables somewhere.
+    And the most common way to do this when devloping a javascript application is to put this env file
+
+________________
+<!-- Correct Way -->
+const result= await pool.query('SELECT * FROM product WHERE id = ?', [id]); 
+Untrusted data is not part of the query
+Cause if we allowed the untrusted data here this could lead to sql Injection attacks where people can basically get any sort of data they want from your database 
+<!-- Wrong Way -->
+const result= await pool.query('SELECT * FROM product WHERE id = ${id}'); 
+
+<!-- Express 5-->
+It has asychronous error handling which allows us to write code using async await that cause an error and then we can handle that error in asingle location which can make the code little bit easier to read, write and modify
+
+
+<!-- Need to install Nodemon -->
+npm i nodemon
+npm run dev
+for not to re run the app again and again as  changes are made
+
+<!-- Need to install mysql2 library -->
+npm install -g mysql2
+import mysql from 'mysql2';
+
+<!-- Need to instal Express -->
+npm i express
+
+
+

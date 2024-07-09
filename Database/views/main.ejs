@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login Selection</title>
+<link rel="stylesheet" href="main.css"> 
+</head>
+<body>
+
+<div class="container">
+  <h1>Login</h1>
+
+  <!-- Buttons for selecting login type -->
+  <button class="space-btn" onclick="ViewMode(<%=JSON.stringify(0)%>)">Customer Login</button>
+  <button class="space-btn" onclick="ViewMode(<%=JSON.stringify(1)%>)">Admin Login</button>
+  <button class="space-btn" onclick="ViewMode(<%=JSON.stringify(2)%>)">Employee Login</button>
+</div>
+<script src="/Helping.js"></script>
+</body>
+</html>

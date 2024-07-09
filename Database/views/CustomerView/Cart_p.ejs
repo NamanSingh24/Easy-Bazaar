@@ -1,0 +1,160 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Tech2etc Ecommerce Tutorial</title>
+        <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
+
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+
+    <body>
+
+        <section id="header">
+            <a href="#"><img src="/img/logo.png" class="logo" alt=""></a>
+            <div>
+                <ul id="navbar">
+                    <li><a href="/Home">Home</a></li>
+                    <li><a href="/Products">Shop</a></li>
+                    <li><a href="/Blog">Blog</a></li>
+                    <li><a href="/Blog">Blog</a></li>
+                    <li><a href="/About">About</a></li>
+                    <li><a class="active" href="cart.html"><i class="far fa-shopping-bag"></i></a></li>
+
+                </ul>
+            </div>
+        </section>
+
+        <section id="page-header" class="about-header">
+            <h2>#Cart</h2>
+            <p>Add your coupon code & SAVE upto 70%!</p>
+        </section>
+
+        <section id="cart" class="section-p1">
+            <table width = "100%">
+                <% let total =0 ; %>
+                <thead>
+                    <tr>
+                        <td>Remove</td>
+                        <td>Image</td>
+                        <td>Product</td>
+                        <td>Price</td>
+                        <td>Quantity</td>
+                        <td>Subtotal</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <table>
+                        <% Cart.forEach(item => { %>
+                          <tr>
+                            <td><a href="#"><i class="far fa-times-circle"></i></a></td>
+                            <td><img src="<%= item.src %>" alt="<%= item.name %>"></td>
+                            <td><%= item.name %></td>
+                            <td>$<%= item.price.toFixed(2) %></td>
+                            <td><%= item.quantity %></td>
+                            <td>$<%= (item.price * item.quantity).toFixed(2) %></td>
+                            <% total += item.price * item.quantity; %>
+                          </tr>
+
+                        <% }) %>
+                      </table>
+                      
+                </tbody>
+            </table>
+        </section>
+
+        <section id="cart-add" class="section-p1">
+            <div id="coupon">
+                <h3>Apply Coupon</h3>
+                <div>
+                    <input type="text" placeholder="Enter Your Coupon">
+                    <button class="normal">Apply</button>
+                </div>
+            </div>
+
+            <div id="subtotal">
+                <h3>Cart Total</h3>
+                <table>
+                    <tr>
+                        <td>Cart Subtotal</td>
+                        <td>$ <%= total.toFixed(2) %></td>
+                    </tr>
+                    <tr>
+                        <td>Shipping</td>
+                        <% if(total>500 || total==0) {%>
+                        <td>Free</td>
+                        <% } else { %>
+                        <td>
+                        $ 50
+                    </td>
+                    <%total+=50%>
+                        <% } %>
+
+                    </tr>
+                    <tr>
+                        <td><strong>Total</strong></td>
+                        <td><strong>
+                            $ <%= total.toFixed(2) %> 
+                        </strong></td>
+                    </tr>
+                </table>
+                <button>Proceed to Check-out</button>
+            </div>
+        </section>
+
+        <footer class="section-p1">
+            <div class="col">
+                <img class="logo" src="/img/logo.png" alt="">
+                <h4>Contact</h4>
+                <p><strong>Address: </strong>562 wellington Road, Street 32, San Francisco</p>
+                <p><strong>Phone: </strong>+01 2222 365/(+91)01 2345 6789</p>
+                <p><strong>Hours: </strong>10:00 - 18:00, Mon - Sat</p>
+            <div class="follow">
+                <h4>Follow us</h4>
+                <div class="icon">
+                    <i class="fab fa-facebook-f"></i>
+                    <i class="fab fa-twitter"></i>
+                    <i class="fab fa-instagram"></i>
+                    <i class="fab fa-pinterest"></i>
+                    <i class="fab fa-youtube"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <h4>About</h4>
+            <a href="#">About Us</a>
+            <a href="#">Delivery Information</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms & Conditions</a>
+            <a href="#">Contact us</a>
+        </div>
+        <div class="col">
+            <h4>My Account</h4>
+            <a href="#">Sign-in</a>
+            <a href="#">View Cart</a>
+            <a href="#">My Wishlist</a>
+            <a href="#">Track My Order</a>
+            <a href="#">Help</a>
+        </div>
+        <div class="col install">
+            <h4>Install App</h4>
+            <p>From App Store or Google Play</p>
+            <div class="row">
+                <img src="/img/pay/app.jpg" alt="">
+                <img src="/img/pay/play.jpg" alt="">
+            </div>
+            <p>Secured Payment Gateways</p>
+            <img src="/img/pay/pay.png" alt="">
+        </div>
+        </footer>
+
+        <script src="Client.js"></script>
+    </body>
+
+</html> 

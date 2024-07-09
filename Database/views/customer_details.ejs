@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>View Customer Details</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="container">
+  <h1>View Customer Details</h1>
+
+  <!-- Button to view customer details -->
+  <button class="space-btn" onclick="toggleForm('viewCustomerDetailsForm')">View Customer Details</button>
+
+  <!-- Form for viewing customer details -->
+  <form id="viewCustomerDetailsForm" class="hidden" action="view_customer_details.php" method="post">
+    <h2>View Customer Details</h2>
+    <label for="customerId">Customer ID:</label>
+    <input type="text" id="customerId" name="customerId" required>
+    <input type="submit" value="View Details">
+  </form>
+
+</div>
+
+<script>
+  // Function to toggle form visibility
+  function toggleForm(formId) {
+    var form = document.getElementById(formId);
+    form.classList.toggle('hidden');
+  }
+</script>
+
+</body>
+</html>
